@@ -18,7 +18,7 @@ export default defineConfig(({ command }) => {
       }),
       viteMockServe({
         enable: command === 'serve',
-      })
+      }),
     ],
     resolve: {
       alias: {
