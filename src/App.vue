@@ -9,10 +9,8 @@ import { ref } from 'vue'
 
 const msg = ref('我是app根组件')
 
-const fun = ()=>
-    {
-     console.log('222');
-
+const fun = () => {
+  console.log('222')
 }
 fun()
 </script>
