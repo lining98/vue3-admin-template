@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "serve": "vite --open",
+    "dev": "vite --open",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
@@ -13,9 +13,13 @@
     "lint:eslint": "eslint src/**/*.{ts,vue} --cache --fix",
     "lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix",
     "prepare": "husky install",
-    "commitlint": "commitlint --config commitlint.config.cjs -e -V"
+    "commitlint": "commitlint --config commitlint.config.cjs -e -V",
+    "preinstall": "node ./scripts/preinstall.js"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "axios": "^1.4.0",
+    "element-plus": "^2.3.5",
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -32,6 +36,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.14.1",
     "husky": "^8.0.0",
+    "mockjs": "^1.1.0",
     "postcss": "^8.4.24",
     "postcss-html": "^1.5.0",
     "postcss-scss": "^4.0.6",
@@ -49,6 +54,8 @@
     "stylelint-scss": "^5.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
+    "vite-plugin-mock": "2.9.6",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.4.2"
   }
 }

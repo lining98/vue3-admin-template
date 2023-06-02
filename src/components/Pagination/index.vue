@@ -1,12 +1,12 @@
 <template>
-  <div>{{msg}}</div>
+    <div>{{msg}}</div>
 </template>
 
 
 <script setup lang='ts'>
-import { ref } from 'vue';
+import {ref} from 'vue'
 
-const msg = ref("App根组件")
+const msg = ref("分页")
 </script>
 
 
