@@ -6,7 +6,7 @@ import { reqLogin } from '@/api/user'
 import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { UserState } from './types/type'
 // 引入操作本地存储的工具方法
-import { SET_TOKEN,GET_TOKEN } from '@/utils/token'
+import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
 
 export const useUserStore = defineStore('User', {
   state: (): UserState => {
