@@ -7,18 +7,18 @@ export const constantRoute = [
     meta: {
       title: '登录',
       hidden: true, // 代表路由标题再菜单中是否隐藏 true:隐藏 false:不隐藏
-      icon:'Promotion'
+      icon: 'Promotion',
     },
   },
   {
     path: '/',
     name: 'layout',
-    redirect:'/home',
+    redirect: '/home',
     component: () => import('@/layout/Layout.vue'),
     meta: {
       title: '',
       hidden: false,
-      icon:''
+      icon: '',
     },
     children: [
       {
@@ -27,31 +27,30 @@ export const constantRoute = [
         meta: {
           title: '首页',
           hidden: false,
-          icon:'HomeFilled'
+          icon: 'HomeFilled',
         },
       },
     ],
   },
   {
-    path:'/screen',
-    name:'Screen',
+    path: '/screen',
+    name: 'Screen',
     component: () => import('@/views/screen/index.vue'),
     meta: {
       title: '数据大屏',
       hidden: false,
-      icon:'Platform'
+      icon: 'Platform',
     },
-
   },
 
   {
     path: '/acl',
     name: 'Acl',
-    redirect:'/acl/user',
+    redirect: '/acl/user',
     component: () => import('@/layout/Layout.vue'),
     meta: {
       title: '权限管理',
-      icon:'Lock'
+      icon: 'Lock',
     },
     children: [
       {
@@ -60,7 +59,7 @@ export const constantRoute = [
         component: () => import('@/views/acl/user/index.vue'),
         meta: {
           title: '用户管理',
-          icon:'User'
+          icon: 'User',
         },
       },
       {
@@ -69,7 +68,7 @@ export const constantRoute = [
         component: () => import('@/views/acl/role/index.vue'),
         meta: {
           title: '角色管理',
-          icon:'UserFilled'
+          icon: 'UserFilled',
         },
       },
       {
@@ -78,7 +77,7 @@ export const constantRoute = [
         component: () => import('@/views/acl/permission/index.vue'),
         meta: {
           title: '菜单管理',
-          icon:'Monitor'
+          icon: 'Monitor',
         },
       },
     ],
@@ -86,11 +85,11 @@ export const constantRoute = [
   {
     path: '/product',
     name: 'Product',
-    redirect:'/product/user',
+    redirect: '/product/user',
     component: () => import('@/layout/Layout.vue'),
     meta: {
       title: '商品管理',
-      icon:'Goods'
+      icon: 'Goods',
     },
     children: [
       {
@@ -99,7 +98,7 @@ export const constantRoute = [
         component: () => import('@/views/product/trademark/index.vue'),
         meta: {
           title: '品牌管理',
-          icon:'ShoppingCartFull'
+          icon: 'ShoppingCartFull',
         },
       },
       {
@@ -108,7 +107,7 @@ export const constantRoute = [
         component: () => import('@/views/product/attr/index.vue'),
         meta: {
           title: '属性管理',
-          icon:'ChromeFilled'
+          icon: 'ChromeFilled',
         },
       },
       {
@@ -117,7 +116,7 @@ export const constantRoute = [
         component: () => import('@/views/product/spu/index.vue'),
         meta: {
           title: 'SPU管理',
-          icon:'Calendar'
+          icon: 'Calendar',
         },
       },
       {
@@ -126,13 +125,11 @@ export const constantRoute = [
         component: () => import('@/views/product/sku/index.vue'),
         meta: {
           title: 'SKU管理',
-          icon:'Orange'
+          icon: 'Orange',
         },
       },
     ],
   },
-
-
 
   {
     path: '/404',
@@ -141,7 +138,7 @@ export const constantRoute = [
     meta: {
       title: '404',
       hidden: true,
-      icon:'FolderDelete'
+      icon: 'FolderDelete',
     },
   },
   {
@@ -151,7 +148,7 @@ export const constantRoute = [
     meta: {
       title: '任意路由',
       hidden: true,
-      icon:'DataLine'
+      icon: 'DataLine',
     },
   },
 ]

@@ -13,9 +13,7 @@
     <!-- 右侧部分 -->
     <div class="layout_right">
       <!-- 顶部导航 -->
-      <div class="layout_tabbar">
-        top
-      </div>
+      <div class="layout_tabbar">top</div>
       <!-- 内容展示区域 -->
       <div class="layout_main">
         <Main></Main>

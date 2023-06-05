@@ -1,15 +1,11 @@
 <template>
-    <div>{{msg}}</div>
+  <div>{{ msg }}</div>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue'
 
-<script setup lang='ts'>
-import {ref} from 'vue'
-
-const msg = ref("菜单管理")
+const msg = ref('菜单管理')
 </script>
 
-
-<style lang='scss' scoped>
-
-</style>
+<style lang="scss" scoped></style>
