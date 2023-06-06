@@ -1,7 +1,7 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider" :class="fold?'fold':''">
+    <div class="layout_slider" :class="fold ? 'fold' : ''">
       <Logo />
       <el-scrollbar class="scrollbar">
         <el-menu
@@ -69,7 +69,7 @@ const { menuRoutes } = storeToRefs(useUserStore())
         border-right: none;
       }
     }
-    &.fold{
+    &.fold {
       width: 55px;
     }
   }
