@@ -45,12 +45,13 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { useUserStore } from '@/store/user'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 // 引入获取当前时间的函数
 import { getTime } from '@/utils/time'
 import { ElNotification } from 'element-plus'
 const { userLogin } = useUserStore()
 
+const route = useRoute()
 const router = useRouter()
 
 const loginForms = ref()
@@ -71,7 +72,9 @@ const login = async () => {
   try {
     // 保证登录成功
     await userLogin(loginForm)
-    router.push('/')
+    // 判断登录的时候，路由路径当中是否有query参数
+    let redirect: any = route.query.redirect
+    router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',
       message: '欢迎回来',

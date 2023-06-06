@@ -18,7 +18,7 @@ export const constantRoute = [
     meta: {
       title: '',
       hidden: false,
-      icon: '',
+      icon: 'Home',
     },
     children: [
       {
@@ -85,7 +85,7 @@ export const constantRoute = [
   {
     path: '/product',
     name: 'Product',
-    redirect: '/product/user',
+    redirect: '/product/trademark',
     component: () => import('@/layout/Layout.vue'),
     meta: {
       title: '商品管理',

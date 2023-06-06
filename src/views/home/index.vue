@@ -1,11 +1,7 @@
 <template>
-  <div>{{ msg }}</div>
+  <div>首页</div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const msg = ref('home')
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>

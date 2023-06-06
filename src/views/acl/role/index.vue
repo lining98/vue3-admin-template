@@ -11,6 +11,6 @@ const msg = ref('角色管理')
 <style lang="scss" scoped>
 .box {
   height: 400px;
-  background-color: red;
+  background-color: greenyellow;
 }
 </style>
