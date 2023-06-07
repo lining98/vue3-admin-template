@@ -10,7 +10,6 @@ nprogress.configure({ showSpinner: false })
 import { useUserStore } from '@/store/user'
 import pinia from './store'
 const userStore = useUserStore(pinia)
-console.log(userStore)
 
 // 全局守卫：项目当中路由切换都会触发的钩子
 // 全局前置守卫

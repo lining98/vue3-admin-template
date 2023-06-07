@@ -85,7 +85,6 @@ const { menuRoutes } = storeToRefs(useUserStore())
       flex: 1;
       padding: 20px;
       overflow: auto;
-      background-color: skyblue;
     }
   }
 }
