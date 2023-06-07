@@ -70,8 +70,8 @@ const getHasTradeMark = async (pager = 1) => {
   }
 }
 const sizeChange = () => {
-    //当前每一页的数据量发生变化的时候，当前页码归1
-    getHasTradeMark();
+  //当前每一页的数据量发生变化的时候，当前页码归1
+  getHasTradeMark()
 }
 
 onMounted(() => {
