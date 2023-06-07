@@ -1,8 +1,6 @@
 // 路由鉴权，项目当咋哄路由能不能被访问的权限的设置（某一个路由什么条件可以访问，什么情况下不能访问）
 import router from '@/router'
 import setting from './setting'
-// import { createPinia, storeToRefs } from 'pinia'
-// const pinia = createPinia()
 // 引入滚动条
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -12,6 +10,7 @@ nprogress.configure({ showSpinner: false })
 import { useUserStore } from '@/store/user'
 import pinia from './store'
 const userStore = useUserStore(pinia)
+console.log(userStore)
 
 // 全局守卫：项目当中路由切换都会触发的钩子
 // 全局前置守卫
@@ -20,22 +19,13 @@ router.beforeEach(async (to: any, from: any, next: any) => {
   //from:你从来个路由而来
   //next:路由的放行函数
   nprogress.start()
-
-  //   const { token, username } = storeToRefs(useUserStore(pinia))
-  //   const { userInfo, userLogout } = useUserStore(pinia)
-
   //获取token,去判断用户登录、还是未登录
-
-  const token = userStore.token
+  let token = userStore.token
   //获取用户名字
   const username = userStore.username
+
   //用户登录判断
-
-  //   console.log(token);
-
   if (token) {
-    console.log('token......')
-
     //登录成功,访问login,不能访问,指向首页
     if (to.path == '/login') {
       next({ path: '/' })
@@ -63,7 +53,6 @@ router.beforeEach(async (to: any, from: any, next: any) => {
       }
     }
   } else {
-    console.log('no token......')
     //用户未登录判断
     if (to.path == '/login') {
       next()

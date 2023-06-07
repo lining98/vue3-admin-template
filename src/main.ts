@@ -16,9 +16,8 @@ import globalComponent from '@/components'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 // 引入路由
 import router from '@/router'
-// 创建并引用仓库
-import { createPinia } from 'pinia'
-const pinia = createPinia()
+// 引用仓库
+import pinia from './store'
 
 // 获取应用实例对象
 const app = createApp(App)
