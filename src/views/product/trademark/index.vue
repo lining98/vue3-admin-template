@@ -178,12 +178,14 @@ const updateTradeMark = (row: TradeMark) => {
   showModal()
   Object.assign(trademarkParams, row)
 }
-const deleteTradeMark = async(id: number) => {
+const deleteTradeMark = async (id: number) => {
   let res = await reqDeleteTradeMark(id)
-  if(res.code === 200){
+  if (res.code === 200) {
     ElMessage.success('删除品牌成功')
-    getHasTradeMark(tableData.value.length>1?pageNo.value:pageNo.value-1)
-  }else{
+    getHasTradeMark(
+      tableData.value.length > 1 ? pageNo.value : pageNo.value - 1,
+    )
+  } else {
     ElMessage.error('删除品牌失败')
   }
 }
