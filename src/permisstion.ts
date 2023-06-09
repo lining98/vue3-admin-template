@@ -19,7 +19,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
   //next:路由的放行函数
   nprogress.start()
   //获取token,去判断用户登录、还是未登录
-  let token = userStore.token
+  const token = userStore.token
   //获取用户名字
   const username = userStore.username
 
