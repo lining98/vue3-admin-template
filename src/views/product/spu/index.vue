@@ -78,7 +78,11 @@ import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCategoryStore } from '@/store/category'
 import { reqHasSpu } from '@/api/product/spu'
-import type { HasSpuResponseData, Records,SpuData } from '@/api/product/spu/type'
+import type {
+  HasSpuResponseData,
+  Records,
+  SpuData,
+} from '@/api/product/spu/type'
 
 import SpuForm from './spuForm.vue'
 import SkuForm from './skuForm.vue'
@@ -118,11 +122,10 @@ const addSpu = () => {
   scene.value = 1
 }
 // 修改spu
-const updateSpu = (row:SpuData) => {
+const updateSpu = (row: SpuData) => {
   scene.value = 1
   // 调用子组件实例方法获取完整已有的SPU数据
   spuForm.value.initHasSpuData(row)
-
 }
 
 // 子组件SpuForm绑定自定义事件：目前是让子组件通知父组件切换场景0

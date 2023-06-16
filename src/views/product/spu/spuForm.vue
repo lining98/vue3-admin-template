@@ -81,19 +81,29 @@
             >
               {{ tag.saleAttrValueName }}
             </el-tag>
-            <el-button type="primary" size="small" icon="Plus" @click=""></el-button>
+            <el-button
+              type="primary"
+              size="small"
+              icon="Plus"
+              @click=""
+            ></el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="120">
           <template #="{ row }">
-            <el-button type="danger" size="small" icon="Delete" @click=""></el-button>
+            <el-button
+              type="danger"
+              size="small"
+              icon="Delete"
+              @click=""
+            ></el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary"  @click="">保存</el-button>
-      <el-button  @click="cancel">取消</el-button>
+      <el-button type="primary" @click="">保存</el-button>
+      <el-button @click="cancel">取消</el-button>
     </el-form-item>
   </el-form>
 </template>
