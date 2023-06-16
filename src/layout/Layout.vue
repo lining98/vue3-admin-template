@@ -63,8 +63,8 @@ const { menuRoutes } = storeToRefs(useUserStore())
     flex-direction: column;
     transition: all 0.3s;
     .scrollbar {
+      width: $base-menu-width;
       flex: 1;
-      width: 100%;
       .el-menu {
         border-right: none;
       }
@@ -74,6 +74,7 @@ const { menuRoutes } = storeToRefs(useUserStore())
     }
   }
   .layout_right {
+    width: calc(100% - $base-menu-width);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -83,6 +84,7 @@ const { menuRoutes } = storeToRefs(useUserStore())
     }
     .layout_main {
       flex: 1;
+      width: 100%;
       padding: 20px;
       overflow: auto;
     }
