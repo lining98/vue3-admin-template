@@ -2,7 +2,7 @@
   <el-card style="margin-bottom: 15px">
     <el-form inline>
       <el-form-item label="一级分类">
-        <el-select v-model="c1Id" @change="handler">
+        <el-select v-model="c1Id" @change="handler" :disabled="scene == 1">
           <el-option
             v-for="c1 in c1Arr"
             :key="c1.id"
@@ -12,7 +12,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="二级分类">
-        <el-select v-model="c2Id" @change="handler2">
+        <el-select v-model="c2Id" @change="handler2" :disabled="scene == 1">
           <el-option
             v-for="c2 in c2Arr"
             :key="c2.id"
@@ -22,7 +22,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select v-model="c3Id">
+        <el-select v-model="c3Id" :disabled="scene == 1">
           <el-option
             v-for="c3 in c3Arr"
             :key="c3.id"
@@ -39,6 +39,8 @@
 import { onMounted } from 'vue'
 import { useCategoryStore } from '@/store/category'
 import { storeToRefs } from 'pinia'
+
+defineProps(['scene'])
 
 const { c1Id, c2Id, c3Id, c1Arr, c2Arr, c3Arr } = storeToRefs(
   useCategoryStore(),
