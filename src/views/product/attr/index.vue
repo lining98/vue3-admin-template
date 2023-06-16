@@ -135,8 +135,8 @@
 
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch, onBeforeUnmount } from 'vue'
-import  {useCategoryStore}  from '@/store/category'
-import { storeToRefs, } from 'pinia'
+import { useCategoryStore } from '@/store/category'
+import { storeToRefs } from 'pinia'
 import { reqAddOrUpdateAttr, reqAttr, reqRemoveAttr } from '@/api/product/attr'
 import { AttrResponseData, Attr, AttrValue } from '@/api/product/attr/type'
 import { ElMessage } from 'element-plus'
@@ -171,7 +171,7 @@ const getAttr = async () => {
 const addAttr = () => {
   // 清空数据
   Object.assign(attrParams, {
-    id:'',
+    id: '',
     attrName: '',
     attrValueList: [],
     categoryId: c3Id.value,
