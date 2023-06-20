@@ -4,12 +4,7 @@
   </el-icon>
   <!-- 面包屑 -->
   <el-breadcrumb separator-icon="ArrowRight">
-    <el-breadcrumb-item
-      v-for="item in route.matched"
-      :key="item.name"
-      v-show="item.meta.title"
-      :to="item.path"
-    >
+    <el-breadcrumb-item v-for="item in route.matched" :key="item.name" v-show="item.meta.title" :to="item.path">
       <!-- 图标 -->
       <el-icon style="vertical-align: top">
         <component :is="item.meta.icon" />

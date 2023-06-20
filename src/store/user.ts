@@ -3,11 +3,7 @@ import { defineStore } from 'pinia'
 // 引入接口
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
 // 引入数据类型
-import type {
-  loginFormData,
-  loginResponseData,
-  userInfoResponseData,
-} from '@/api/user/type'
+import type { loginFormData, loginResponseData, userInfoResponseData } from '@/api/user/type'
 import type { UserState } from './types/type'
 // 引入操作本地存储的工具方法
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'

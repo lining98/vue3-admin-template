@@ -12,9 +12,7 @@ enum API {
 
 // 获取已有品牌接口
 export const reqHasTradeMark = (page: number, limit: number) => {
-  return request.get<any, TradeMarkResponseData>(
-    API.TRADEMARK_URL + `/${page}/${limit}`,
-  )
+  return request.get<any, TradeMarkResponseData>(API.TRADEMARK_URL + `/${page}/${limit}`)
 }
 
 // 添加域修改已有品牌接口方法

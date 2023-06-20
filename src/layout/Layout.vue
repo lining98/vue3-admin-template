@@ -4,13 +4,7 @@
     <div class="layout_slider" :class="fold ? 'fold' : ''">
       <Logo />
       <el-scrollbar class="scrollbar">
-        <el-menu
-          background-color="#001529"
-          text-color="#ddd"
-          :collapse="fold"
-          :default-active="route.path"
-          unique-opened
-        >
+        <el-menu background-color="#001529" text-color="#ddd" :collapse="fold" :default-active="route.path" unique-opened>
           <!-- active-text-color="#fff" -->
           <!-- 根据路由动态生成菜单 -->
           <Menu :menuList="menuRoutes"></Menu>

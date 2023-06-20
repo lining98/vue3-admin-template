@@ -3,11 +3,7 @@
     <el-button icon="Refresh" @click="refresh = !refresh" circle />
     <el-button icon="FullScreen" @click="fullScreen" circle />
     <el-button icon="Setting" circle />
-    <img
-      :src="avatar"
-      style="width: 24px; height: 24px; border-radius: 50%"
-      alt=""
-    />
+    <img :src="avatar" style="width: 24px; height: 24px; border-radius: 50%" alt="" />
     <el-dropdown>
       <span class="el-dropdown-link">
         {{ username }}

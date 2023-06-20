@@ -1,27 +1,15 @@
 <template>
   <el-form ref="form" label-width="100px" :inline="false">
     <el-form-item label="SPU名称">
-      <el-input
-        v-model="spuParams.spuName"
-        placeholder="请你输入SPU名称"
-      ></el-input>
+      <el-input v-model="spuParams.spuName" placeholder="请你输入SPU名称"></el-input>
     </el-form-item>
     <el-form-item label="SPU品牌">
       <el-select v-model="spuParams.tmId" clearable filterable @change="">
-        <el-option
-          v-for="item in allTradeMark"
-          :key="item.id"
-          :label="item.tmName"
-          :value="item.id"
-        ></el-option>
+        <el-option v-for="item in allTradeMark" :key="item.id" :label="item.tmName" :value="item.id"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="SPU描述">
-      <el-input
-        v-model="spuParams.description"
-        type="textarea"
-        placeholder="请你输入SPU描述"
-      ></el-input>
+      <el-input v-model="spuParams.description" type="textarea" placeholder="请你输入SPU描述"></el-input>
     </el-form-item>
     <el-form-item label="SPU图片">
       <el-upload
@@ -35,62 +23,20 @@
         <el-icon><Plus /></el-icon>
       </el-upload>
       <el-dialog v-model="dialogVisible">
-        <img
-          w-full
-          :src="dialogImageUrl"
-          alt="Preview Image"
-          style="width: 100%; height: 100%"
-        />
+        <img w-full :src="dialogImageUrl" alt="Preview Image" style="width: 100%; height: 100%" />
       </el-dialog>
     </el-form-item>
     <el-form-item label="SPU销售属性">
-      <el-select
-        v-model="saleAttrIdAndValueName"
-        clearable
-        :placeholder="
-          unSelectSaleAttr.length
-            ? `还未选择${unSelectSaleAttr.length}个`
-            : '无'
-        "
-      >
-        <el-option
-          v-for="item in unSelectSaleAttr"
-          :key="item.id"
-          :label="item.name"
-          :value="`${item.id}:${item.name}`"
-        ></el-option>
+      <el-select v-model="saleAttrIdAndValueName" clearable :placeholder="unSelectSaleAttr.length ? `还未选择${unSelectSaleAttr.length}个` : '无'">
+        <el-option v-for="item in unSelectSaleAttr" :key="item.id" :label="item.name" :value="`${item.id}:${item.name}`"></el-option>
       </el-select>
-      <el-button
-        style="margin-left: 10px"
-        type="primary"
-        size="default"
-        icon="Plus"
-        :disabled="!saleAttrIdAndValueName"
-        @click="addSaleAttr"
-      >
-        添加属性
-      </el-button>
+      <el-button style="margin-left: 10px" type="primary" size="default" icon="Plus" :disabled="!saleAttrIdAndValueName" @click="addSaleAttr">添加属性</el-button>
       <el-table :data="saleAttr" style="margin: 10px 0" border stripe>
-        <el-table-column
-          label="序号"
-          type="index"
-          align="center"
-          width="80"
-        ></el-table-column>
-        <el-table-column
-          label="销售属性名"
-          prop="saleAttrName"
-          width="120"
-        ></el-table-column>
+        <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
+        <el-table-column label="销售属性名" prop="saleAttrName" width="120"></el-table-column>
         <el-table-column label="销售属性值">
           <template #="{ row, index }">
-            <el-tag
-              v-for="tag in row.spuSaleAttrValueList"
-              :key="tag.id"
-              style="margin: 0 5px"
-              closable
-              @close="row.spuSaleAttrValueList.splice(index, 1)"
-            >
+            <el-tag v-for="tag in row.spuSaleAttrValueList" :key="tag.id" style="margin: 0 5px" closable @close="row.spuSaleAttrValueList.splice(index, 1)">
               {{ tag.saleAttrValueName }}
             </el-tag>
             <el-input
@@ -103,35 +49,18 @@
               clearable
               @blur="toLook(row)"
             ></el-input>
-            <el-button
-              v-else
-              type="primary"
-              size="small"
-              icon="Plus"
-              @click="toEdit(row, index)"
-            ></el-button>
+            <el-button v-else type="primary" size="small" icon="Plus" @click="toEdit(row, index)"></el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="120">
           <template #="{ row, index }">
-            <el-button
-              type="danger"
-              size="small"
-              icon="Delete"
-              @click="saleAttr.splice(index, 1)"
-            ></el-button>
+            <el-button type="danger" size="small" icon="Delete" @click="saleAttr.splice(index, 1)"></el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-form-item>
     <el-form-item>
-      <el-button
-        :disabled="saleAttr.length > 0 ? false : true"
-        type="primary"
-        @click="save"
-      >
-        保存
-      </el-button>
+      <el-button :disabled="saleAttr.length > 0 ? false : true" type="primary" @click="save">保存</el-button>
       <el-button @click="cancel">取消</el-button>
     </el-form-item>
   </el-form>
@@ -139,25 +68,8 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
-import {
-  reqAllTradeMark,
-  reqSpuImageList,
-  reqSpuHasSaleAttr,
-  reqAllSaleAttr,
-  reqAddOrUpdateSpu,
-} from '@/api/product/spu'
-import type {
-  AllTradeMark,
-  HasSaleAttrResponseData,
-  SaleAttrResponseData,
-  SpuData,
-  SpuHasImg,
-  SpuImg,
-  TradeMark,
-  SaleAttr,
-  HasSaleAttr,
-  SaleAttrValue,
-} from '@/api/product/spu/type'
+import { reqAllTradeMark, reqSpuImageList, reqSpuHasSaleAttr, reqAllSaleAttr, reqAddOrUpdateSpu } from '@/api/product/spu'
+import type { AllTradeMark, HasSaleAttrResponseData, SaleAttrResponseData, SpuData, SpuHasImg, SpuImg, TradeMark, SaleAttr, HasSaleAttr, SaleAttrValue } from '@/api/product/spu/type'
 import { ElMessage } from 'element-plus'
 
 let $emit = defineEmits(['changeScene'])
@@ -201,11 +113,7 @@ const handlePictureCardPreview = (file: any) => {
 const handleRemove = () => {}
 //照片钱上传成功之前的钩子约束文件的大小与类型
 const handlerUpload = (file: any) => {
-  if (
-    file.type == 'image/png' ||
-    file.type == 'image/jpeg' ||
-    file.type == 'image/gif'
-  ) {
+  if (file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/gif') {
     if (file.size / 1024 / 1024 < 3) {
       return true
     } else {

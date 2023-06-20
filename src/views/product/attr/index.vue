@@ -3,57 +3,23 @@
     <Category :scene="scene" />
     <el-card>
       <div v-show="scene == 0">
-        <el-button
-          type="primary"
-          size="default"
-          icon="Plus"
-          :disabled="!c3Id"
-          @click="addAttr"
-        >
-          添加属性
-        </el-button>
+        <el-button type="primary" size="default" icon="Plus" :disabled="!c3Id" @click="addAttr">添加属性</el-button>
         <el-table :data="dataAttr" border style="margin: 10px 0">
-          <el-table-column
-            label="序号"
-            type="index"
-            align="center"
-            width="80"
-          ></el-table-column>
-          <el-table-column
-            label="属性名称"
-            prop="attrName"
-            width="150"
-          ></el-table-column>
+          <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
+          <el-table-column label="属性名称" prop="attrName" width="150"></el-table-column>
           <el-table-column label="属性值名称">
             <template #="{ row, $index }">
-              <el-tag
-                style="margin: 5px"
-                v-for="item in row.attrValueList"
-                :key="item.id"
-              >
+              <el-tag style="margin: 5px" v-for="item in row.attrValueList" :key="item.id">
                 {{ item.valueName }}
               </el-tag>
             </template>
           </el-table-column>
           <el-table-column label="操作" prop="" width="150">
             <template #="{ row, $index }">
-              <el-button
-                type="warning"
-                size="small"
-                icon="Edit"
-                @click="updateAttr(row)"
-              ></el-button>
-              <el-popconfirm
-                :title="`你确定删除${row.attrName}?`"
-                width="200px"
-                @confirm="deleteAttr(row.id)"
-              >
+              <el-button type="warning" size="small" icon="Edit" @click="updateAttr(row)"></el-button>
+              <el-popconfirm :title="`你确定删除${row.attrName}?`" width="200px" @confirm="deleteAttr(row.id)">
                 <template #reference>
-                  <el-button
-                    type="danger"
-                    size="small"
-                    icon="Delete"
-                  ></el-button>
+                  <el-button type="danger" size="small" icon="Delete"></el-button>
                 </template>
               </el-popconfirm>
             </template>
@@ -64,70 +30,28 @@
         <!-- 展示添加属性与修改数据的结构 -->
         <el-form inline>
           <el-form-item label="属性名称">
-            <el-input
-              placeholder="请你输入属性名称"
-              v-model="attrParams.attrName"
-            ></el-input>
+            <el-input placeholder="请你输入属性名称" v-model="attrParams.attrName"></el-input>
           </el-form-item>
         </el-form>
-        <el-button
-          type="primary"
-          size="default"
-          :disabled="!attrParams.attrName"
-          @click="addAttrValue"
-        >
-          添加属性值
-        </el-button>
-        <el-button type="primary" size="default" @click="scene = 0">
-          取消
-        </el-button>
-        <el-table
-          border
-          :data="attrParams.attrValueList"
-          style="margin: 10px 0"
-        >
-          <el-table-column
-            label="序号"
-            type="index"
-            width="80"
-            align="center"
-          ></el-table-column>
+        <el-button type="primary" size="default" :disabled="!attrParams.attrName" @click="addAttrValue">添加属性值</el-button>
+        <el-button type="primary" size="default" @click="scene = 0">取消</el-button>
+        <el-table border :data="attrParams.attrValueList" style="margin: 10px 0">
+          <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
           <el-table-column label="属性值">
             <template #="{ row, $index }">
-              <el-input
-                :ref="(vc:any)=>inputArr[$index] = vc"
-                v-if="row.flag"
-                size="small"
-                placeholder="请你输入属性值名称"
-                v-model="row.valueName"
-                @blur="toLook(row, $index)"
-              ></el-input>
+              <el-input :ref="(vc:any)=>inputArr[$index] = vc" v-if="row.flag" size="small" placeholder="请你输入属性值名称" v-model="row.valueName" @blur="toLook(row, $index)"></el-input>
               <div v-else @click="toEdit(row, $index)">{{ row.valueName }}</div>
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template #="{ row, $index }">
-              <el-button
-                type="danger"
-                size="small"
-                icon="Delete"
-                @click="attrParams.attrValueList.splice($index, 1)"
-              ></el-button>
+              <el-button type="danger" size="small" icon="Delete" @click="attrParams.attrValueList.splice($index, 1)"></el-button>
             </template>
           </el-table-column>
         </el-table>
 
-        <el-button
-          type="primary"
-          size="default"
-          @click="save"
-          :disabled="attrParams.attrValueList.length == 0"
-        >
-          保存
-        </el-button>
-        <el-button type="primary" size="default" @click="scene = 0">
-          取消
-        </el-button>
+        <el-button type="primary" size="default" @click="save" :disabled="attrParams.attrValueList.length == 0">保存</el-button>
+        <el-button type="primary" size="default" @click="scene = 0">取消</el-button>
       </div>
     </el-card>
   </div>

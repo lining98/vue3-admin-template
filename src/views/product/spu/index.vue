@@ -3,61 +3,20 @@
     <Category :scene="scene"></Category>
     <el-card>
       <div v-show="scene == 0">
-        <el-button
-          type="primary"
-          size="default"
-          icon="Plus"
-          :disabled="!c3Id"
-          @click="addSpu"
-        >
-          添加SPU
-        </el-button>
+        <el-button type="primary" size="default" icon="Plus" :disabled="!c3Id" @click="addSpu">添加SPU</el-button>
         <el-table :data="tableData" border stripe style="margin: 10px 0">
-          <el-table-column
-            label="序号"
-            width="80"
-            type="index"
-            align="center"
-          ></el-table-column>
+          <el-table-column label="序号" width="80" type="index" align="center"></el-table-column>
           <el-table-column label="SPU名称" prop="spuName"></el-table-column>
           <el-table-column label="SPU描述" prop="description"></el-table-column>
           <el-table-column label="SPU操作">
             <template #="{ row, $index }">
-              <el-button
-                type="primary"
-                size="small"
-                icon="Plus"
-                title="添加SKU"
-                @click="addSku(row)"
-              ></el-button>
-              <el-button
-                type="warning"
-                size="small"
-                icon="Edit"
-                title="修改SPU"
-                @click="updateSpu(row)"
-              ></el-button>
-              <el-button
-                type="info"
-                size="small"
-                icon="View"
-                title="查看SKU列表"
-                @click="findSku(row)"
-              ></el-button>
+              <el-button type="primary" size="small" icon="Plus" title="添加SKU" @click="addSku(row)"></el-button>
+              <el-button type="warning" size="small" icon="Edit" title="修改SPU" @click="updateSpu(row)"></el-button>
+              <el-button type="info" size="small" icon="View" title="查看SKU列表" @click="findSku(row)"></el-button>
 
-              <el-popconfirm
-                :title="`你确定删除${row.spuName}吗?`"
-                width="200px"
-                @confirm="deleteSpu(row)"
-              >
+              <el-popconfirm :title="`你确定删除${row.spuName}吗?`" width="200px" @confirm="deleteSpu(row)">
                 <template #reference>
-              <el-button
-                type="danger"
-                size="small"
-                icon="Delete"
-                title="删除SPU"
-                @click=""
-              ></el-button>
+                  <el-button type="danger" size="small" icon="Delete" title="删除SPU" @click=""></el-button>
                 </template>
               </el-popconfirm>
             </template>
@@ -98,14 +57,8 @@
 import { onBeforeUnmount, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCategoryStore } from '@/store/category'
-import { reqHasSpu, reqSkuList,reqDeleteSpu } from '@/api/product/spu'
-import type {
-  HasSpuResponseData,
-  Records,
-  SpuData,
-  SkuInfoData,
-  SkuData,
-} from '@/api/product/spu/type'
+import { reqHasSpu, reqSkuList, reqDeleteSpu } from '@/api/product/spu'
+import type { HasSpuResponseData, Records, SpuData, SkuInfoData, SkuData } from '@/api/product/spu/type'
 
 import SpuForm from './spuForm.vue'
 import SkuForm from './skuForm.vue'
@@ -130,11 +83,7 @@ const show = ref<boolean>(false)
 
 const getHasSpu = async (pager = 1) => {
   pageNo.value = pager
-  let res: HasSpuResponseData = await reqHasSpu(
-    pageNo.value,
-    limit.value,
-    c3Id.value,
-  )
+  let res: HasSpuResponseData = await reqHasSpu(pageNo.value, limit.value, c3Id.value)
   if (res.code === 200) {
     tableData.value = res.data.records
     total.value = res.data.total
@@ -187,9 +136,10 @@ const deleteSpu = async (row: SpuData) => {
   let res: SkuInfoData = await reqDeleteSpu(row.id as number)
   if (res.code == 200) {
     ElMessage.success('删除成功')
-    getHasSpu(tableData.value.length>1?pageNo.value:pageNo.value-1)
-  }else{
-    ElMessage.error('删除失败')}
+    getHasSpu(tableData.value.length > 1 ? pageNo.value : pageNo.value - 1)
+  } else {
+    ElMessage.error('删除失败')
+  }
 }
 
 watch(
@@ -206,7 +156,6 @@ onBeforeUnmount(() => {
   // 清空仓库的数据
   useCategoryStore().$reset()
 })
-
 </script>
 
 <style lang="scss" scoped></style>

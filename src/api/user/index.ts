@@ -10,8 +10,7 @@ enum API {
 import type { loginFormData, loginResponseData } from './type'
 
 // 登录接口方法
-export const reqLogin = (data: loginFormData) =>
-  request.post<any, loginResponseData>(API.LOGIN_URL, data)
+export const reqLogin = (data: loginFormData) => request.post<any, loginResponseData>(API.LOGIN_URL, data)
 // 获取用户信息接口方法
 export const reqUserInfo = () => request.get<any, any>(API.USERINFO_URL)
 // 退出登录

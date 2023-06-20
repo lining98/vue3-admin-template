@@ -24,12 +24,7 @@ import Setting from './Setting.vue'
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(245, 242, 242),
-    rgb(239, 239, 243),
-    rgb(245, 242, 242)
-  );
+  background-image: linear-gradient(to bottom, rgb(245, 242, 242), rgb(239, 239, 243), rgb(245, 242, 242));
   .tabbar_left {
     display: flex;
     align-items: center;
