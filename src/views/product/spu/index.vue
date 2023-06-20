@@ -28,7 +28,7 @@
                 size="small"
                 icon="Plus"
                 title="添加SKU"
-                @click=""
+                @click="addSku(row)"
               ></el-button>
               <el-button
                 type="warning"
@@ -42,8 +42,15 @@
                 size="small"
                 icon="View"
                 title="查看SKU列表"
-                @click=""
+                @click="findSku(row)"
               ></el-button>
+
+              <el-popconfirm
+                :title="`你确定删除${row.spuName}吗?`"
+                width="200px"
+                @confirm="deleteSpu(row)"
+              >
+                <template #reference>
               <el-button
                 type="danger"
                 size="small"
@@ -51,6 +58,8 @@
                 title="删除SPU"
                 @click=""
               ></el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
@@ -68,26 +77,40 @@
         />
       </div>
       <SpuForm ref="spuForm" v-show="scene == 1" @changeScene="changeScene" />
-      <SkuForm v-show="scene == 2" />
+      <SkuForm ref="skuForm" v-show="scene == 2" @changeScene="changeScene" />
     </el-card>
+    <el-dialog title="SKU列表" v-model="show">
+      <el-table :data="skuArr" border>
+        <el-table-column prop="skuName" label="SKU名字"></el-table-column>
+        <el-table-column prop="price" label="SKU价格"></el-table-column>
+        <el-table-column prop="weight" label="SKU重量"></el-table-column>
+        <el-table-column label="SKU图片">
+          <template #="{ row, $index }">
+            <img :src="row.skuDefaultImg" style="width: 100px; height: 100px" alt="" />
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCategoryStore } from '@/store/category'
-import { reqHasSpu } from '@/api/product/spu'
+import { reqHasSpu, reqSkuList,reqDeleteSpu } from '@/api/product/spu'
 import type {
   HasSpuResponseData,
   Records,
   SpuData,
+  SkuInfoData,
+  SkuData,
 } from '@/api/product/spu/type'
 
 import SpuForm from './spuForm.vue'
 import SkuForm from './skuForm.vue'
+import { ElMessage } from 'element-plus'
 
-const categoryStore = useCategoryStore()
 const { c1Id, c2Id, c3Id } = storeToRefs(useCategoryStore())
 
 const scene = ref<number>(0) // 0:显示已有SPU  1:添加或者修改已有SPU  2:添加SKU的结构
@@ -99,6 +122,11 @@ const tableData = ref<Records>([])
 
 // 获取子组件实例
 const spuForm = ref<any>()
+const skuForm = ref<any>()
+
+// 获取全部的sku数据
+const skuArr = ref<SkuData[]>([])
+const show = ref<boolean>(false)
 
 const getHasSpu = async (pager = 1) => {
   pageNo.value = pager
@@ -117,9 +145,16 @@ const sizeChange = () => {
   getHasSpu()
 }
 
-// 添加spu
+// 添加sku按钮的回调
+const addSku = (row: SpuData) => {
+  scene.value = 2
+  skuForm.value.initSkuData(c1Id.value, c2Id.value, row)
+}
+
+// 添加spu按钮的回调
 const addSpu = () => {
   scene.value = 1
+  spuForm.value.initAddSpu(c3Id.value)
 }
 // 修改spu
 const updateSpu = (row: SpuData) => {
@@ -129,8 +164,32 @@ const updateSpu = (row: SpuData) => {
 }
 
 // 子组件SpuForm绑定自定义事件：目前是让子组件通知父组件切换场景0
-const changeScene = (num: number) => {
-  scene.value = num
+const changeScene = (obj: any) => {
+  scene.value = obj.scene
+  if (obj.params == 'update') {
+    getHasSpu(pageNo.value)
+  } else {
+    getHasSpu()
+  }
+}
+
+// 查看SKU列表的数据
+const findSku = async (row: SpuData) => {
+  let res: SkuInfoData = await reqSkuList(row.id as number)
+  if (res.code == 200) {
+    skuArr.value = res.data
+    show.value = true
+  }
+}
+
+// 删除spu
+const deleteSpu = async (row: SpuData) => {
+  let res: SkuInfoData = await reqDeleteSpu(row.id as number)
+  if (res.code == 200) {
+    ElMessage.success('删除成功')
+    getHasSpu(tableData.value.length>1?pageNo.value:pageNo.value-1)
+  }else{
+    ElMessage.error('删除失败')}
 }
 
 watch(
@@ -141,6 +200,13 @@ watch(
     }
   },
 )
+
+//路由组件销毁的时候，把仓库分类相关的数据清空
+onBeforeUnmount(() => {
+  // 清空仓库的数据
+  useCategoryStore().$reset()
+})
+
 </script>
 
 <style lang="scss" scoped></style>

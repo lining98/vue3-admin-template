@@ -6,6 +6,8 @@ import type {
   SpuHasImg,
   SaleAttrResponseData,
   HasSaleAttrResponseData,
+  SkuData,
+  SkuInfoData,
 } from './type'
 
 enum API {
@@ -16,6 +18,9 @@ enum API {
   ALLSALEATTR_URL = '/admin/product/baseSaleAttrList',
   ADDSPU_URL = '/admin/product/saveSpuInfo',
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
+  ADDSKU_URL = '/admin/product/saveSkuInfo',
+  SKUINFO_URL = '/admin/product/findBySpuId/',
+  DELETE_URL = '/admin/product/deleteSpu/'
 }
 
 // 获取某一个三级分类下已有的SPU数据
@@ -49,10 +54,20 @@ export const reqAllSaleAttr = () =>
 export const reqAddOrUpdateSpu = (data: any) => {
   // 如果SPU对象拥有id,更新已有的spu
   if (data.id) {
-    return request.post<any, any>(API.ADDSPU_URL, data)
-  } else {
     return request.post<any, any>(API.UPDATESPU_URL, data)
+  } else {
+    return request.post<any, any>(API.ADDSPU_URL, data)
   }
 }
 
-// 更新已有的SPU接口
+// 添加sku的接口
+export const reqAddSku = (data: SkuData) =>
+  request.post<any, any>(API.ADDSKU_URL, data)
+
+// 获取SKU的数据
+export const reqSkuList = (spuId: number | string) =>
+  request.get<any, SkuInfoData>(API.SKUINFO_URL + spuId)
+
+// 获取SKU的数据
+export const reqDeleteSpu = (spuId: number | string) =>
+  request.delete<any, any>(API.DELETE_URL + spuId)

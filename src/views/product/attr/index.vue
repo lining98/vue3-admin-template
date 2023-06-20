@@ -141,7 +141,6 @@ import { reqAddOrUpdateAttr, reqAttr, reqRemoveAttr } from '@/api/product/attr'
 import { AttrResponseData, Attr, AttrValue } from '@/api/product/attr/type'
 import { ElMessage } from 'element-plus'
 
-const categoryStore = useCategoryStore()
 const { c1Id, c2Id, c3Id } = storeToRefs(useCategoryStore())
 
 const dataAttr = ref<Attr[]>([])
@@ -259,7 +258,7 @@ const deleteAttr = async (attrId: number) => {
 //路由组件销毁的时候，把仓库分类相关的数据清空
 onBeforeUnmount(() => {
   // 清空仓库的数据
-  categoryStore.$reset()
+  useCategoryStore().$reset()
 })
 
 watch(
