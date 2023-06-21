@@ -5,6 +5,7 @@ import '@/styles/index.scss'
 // 引入element-plus插件域样式
 import ELementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // svg插件需要配置代码
 import 'virtual:svg-icons-register'
