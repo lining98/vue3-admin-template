@@ -15,7 +15,12 @@
         <el-table-column label="操作">
           <template #="{ row, index }">
             <el-button type="primary" icon="Edit" @click="updateTradeMark(row)" />
-            <el-popconfirm :title="`您确定要删除${row.tmName}吗？`" icon="Delete" width="200px" @confirm="deleteTradeMark(row.id)">
+            <el-popconfirm
+              :title="`您确定要删除${row.tmName}吗？`"
+              icon="Delete"
+              width="200px"
+              @confirm="deleteTradeMark(row.id)"
+            >
               <template #reference>
                 <el-button type="danger" icon="Delete" />
               </template>
@@ -43,7 +48,13 @@
           <el-input v-model.trim="trademarkParams.tmName" placeholder="请您输入品牌名称" />
         </el-form-item>
         <el-form-item label="品牌LOGO" prop="logoUrl">
-          <el-upload class="avatar-uploader" action="/api/admin/product/fileUpload" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <el-upload
+            class="avatar-uploader"
+            action="/api/admin/product/fileUpload"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload"
+          >
             <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>

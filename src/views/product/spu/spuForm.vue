@@ -27,16 +27,40 @@
       </el-dialog>
     </el-form-item>
     <el-form-item label="SPU销售属性">
-      <el-select v-model="saleAttrIdAndValueName" clearable :placeholder="unSelectSaleAttr.length ? `还未选择${unSelectSaleAttr.length}个` : '无'">
-        <el-option v-for="item in unSelectSaleAttr" :key="item.id" :label="item.name" :value="`${item.id}:${item.name}`"></el-option>
+      <el-select
+        v-model="saleAttrIdAndValueName"
+        clearable
+        :placeholder="unSelectSaleAttr.length ? `还未选择${unSelectSaleAttr.length}个` : '无'"
+      >
+        <el-option
+          v-for="item in unSelectSaleAttr"
+          :key="item.id"
+          :label="item.name"
+          :value="`${item.id}:${item.name}`"
+        ></el-option>
       </el-select>
-      <el-button style="margin-left: 10px" type="primary" size="default" icon="Plus" :disabled="!saleAttrIdAndValueName" @click="addSaleAttr">添加属性</el-button>
+      <el-button
+        style="margin-left: 10px"
+        type="primary"
+        size="default"
+        icon="Plus"
+        :disabled="!saleAttrIdAndValueName"
+        @click="addSaleAttr"
+      >
+        添加属性
+      </el-button>
       <el-table :data="saleAttr" style="margin: 10px 0" border stripe>
         <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
         <el-table-column label="销售属性名" prop="saleAttrName" width="120"></el-table-column>
         <el-table-column label="销售属性值">
           <template #="{ row, index }">
-            <el-tag v-for="tag in row.spuSaleAttrValueList" :key="tag.id" style="margin: 0 5px" closable @close="row.spuSaleAttrValueList.splice(index, 1)">
+            <el-tag
+              v-for="tag in row.spuSaleAttrValueList"
+              :key="tag.id"
+              style="margin: 0 5px"
+              closable
+              @close="row.spuSaleAttrValueList.splice(index, 1)"
+            >
               {{ tag.saleAttrValueName }}
             </el-tag>
             <el-input
@@ -69,7 +93,18 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { reqAllTradeMark, reqSpuImageList, reqSpuHasSaleAttr, reqAllSaleAttr, reqAddOrUpdateSpu } from '@/api/product/spu'
-import type { AllTradeMark, HasSaleAttrResponseData, SaleAttrResponseData, SpuData, SpuHasImg, SpuImg, TradeMark, SaleAttr, HasSaleAttr, SaleAttrValue } from '@/api/product/spu/type'
+import type {
+  AllTradeMark,
+  HasSaleAttrResponseData,
+  SaleAttrResponseData,
+  SpuData,
+  SpuHasImg,
+  SpuImg,
+  TradeMark,
+  SaleAttr,
+  HasSaleAttr,
+  SaleAttrValue,
+} from '@/api/product/spu/type'
 import { ElMessage } from 'element-plus'
 
 let $emit = defineEmits(['changeScene'])

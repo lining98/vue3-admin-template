@@ -16,7 +16,12 @@
       <el-form inline label-width="80">
         <el-form-item v-for="item in attrArr" :key="item.id" :label="item.attrName">
           <el-select v-model="item.attrIdAndValueId" placeholder="请选择">
-            <el-option v-for="attrValue in item.attrValueList" :key="attrValue.id" :label="attrValue.valueName" :value="`${item.id}:${attrValue.id}`"></el-option>
+            <el-option
+              v-for="attrValue in item.attrValueList"
+              :key="attrValue.id"
+              :label="attrValue.valueName"
+              :value="`${item.id}:${attrValue.id}`"
+            ></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -25,7 +30,12 @@
       <el-form inline label-width="80">
         <el-form-item v-for="item in saleArr" :key="item.id" :label="item.saleAttrName">
           <el-select v-model="item.saleIdAndValueId" placeholder="">
-            <el-option v-for="saleAttrValue in item.spuSaleAttrValueList" :key="saleAttrValue.id" :label="saleAttrValue.saleAttrValueName" :value="`${item.id}:${saleAttrValue.id}`"></el-option>
+            <el-option
+              v-for="saleAttrValue in item.spuSaleAttrValueList"
+              :key="saleAttrValue.id"
+              :label="saleAttrValue.saleAttrValueName"
+              :value="`${item.id}:${saleAttrValue.id}`"
+            ></el-option>
           </el-select>
         </el-form-item>
       </el-form>

@@ -39,7 +39,14 @@
           <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
           <el-table-column label="属性值">
             <template #="{ row, $index }">
-              <el-input :ref="(vc:any)=>inputArr[$index] = vc" v-if="row.flag" size="small" placeholder="请你输入属性值名称" v-model="row.valueName" @blur="toLook(row, $index)"></el-input>
+              <el-input
+                :ref="(vc:any)=>inputArr[$index] = vc"
+                v-if="row.flag"
+                size="small"
+                placeholder="请你输入属性值名称"
+                v-model="row.valueName"
+                @blur="toLook(row, $index)"
+              ></el-input>
               <div v-else @click="toEdit(row, $index)">{{ row.valueName }}</div>
             </template>
           </el-table-column>
