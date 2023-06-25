@@ -8,7 +8,7 @@
     </div>
     <div class="right">
       <span class="rbtn btn" @click="">统计报告</span>
-      <span class="time">当前时间:{{time}}</span>
+      <span class="time">当前时间:{{ time }}</span>
     </div>
   </div>
 </template>
@@ -24,12 +24,12 @@ const router = useRouter()
 const time = ref()
 const timer = ref(0)
 
-onMounted(()=>{
-  timer.value = setInterval(()=>{
+onMounted(() => {
+  timer.value = setInterval(() => {
     time.value = moment().format('YYYY-MM-DD hh:mm:ss')
-  },1000)
+  }, 1000)
 })
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   clearInterval(timer.value)
 })
 </script>
