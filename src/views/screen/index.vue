@@ -50,8 +50,9 @@ window.onresize = () => {
     left: 50%;
     top: 50%;
     transform-origin: left top;
-
     .main {
+      height: 1040px;
+      padding-top: 15px;
       display: flex;
       .right {
         flex: 1;

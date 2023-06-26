@@ -40,7 +40,6 @@ onBeforeUnmount(() => {
   height: 40px;
   display: flex;
   color: #29fcff;
-  margin-bottom: 20px;
   .left {
     flex: 1.5;
     background: url('../images/dataScreen-header-left-bg.png') no-repeat;

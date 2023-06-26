@@ -39,21 +39,23 @@ onMounted(() => {
           colorStops: [
             {
               offset: 0,
-              color: 'skyblue', // 0% 处的颜色
+              color: '#003680', // 0% 处的颜色
             },
             {
               offset: 1,
-              color: 'blue', // 100% 处的颜色
+              color: '#051f42', // 100% 处的颜色
             },
           ],
           global: false, // 缺省为 false
         },
+        borderColor: '#328ecf',
+        borderWidth: 2,
         opacity: 0.9,
       },
       // 地图高亮的效果
       emphasis: {
         itemStyle: {
-          color: 'red',
+          color: '#0f1751',
         },
         label: {
           fontSize: 22,

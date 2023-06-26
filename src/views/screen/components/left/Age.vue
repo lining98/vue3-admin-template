@@ -75,7 +75,7 @@ onMounted(() => {
 .box2 {
   width: 100%;
   height: 100%;
-  background: url(../../images/dataScreen-main-cb.png) no-repeat;
+  background: url(../../images/dataScreen-main-lc.png) no-repeat;
   background-size: 100% 100%;
 
   .title {

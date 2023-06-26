@@ -15,7 +15,6 @@ import Age from './Age.vue'
 <style lang="scss" scoped>
 .left {
   flex: 1;
-  height: 1040px;
   display: flex;
   flex-direction: column;
   div:nth-child(1) {

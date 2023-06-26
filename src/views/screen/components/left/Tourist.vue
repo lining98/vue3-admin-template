@@ -71,7 +71,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .tourist {
   color: #fff;
-  background: url('../../images/dataScreen-main-lb.png') no-repeat;
+  background: url('../../images/dataScreen-main-lt.png') no-repeat;
   background-size: 100% 100%;
   .top {
     margin-left: 20px;
