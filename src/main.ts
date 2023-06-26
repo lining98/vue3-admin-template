@@ -36,5 +36,9 @@ app.use(pinia)
 // 引入路由鉴权文件
 import './permisstion'
 
+// 引入自定义指令文件
+import { isHasBtn } from '@/directive/has'
+isHasBtn(app)
+
 // 将应用挂载到挂载点上
 app.mount('#app')

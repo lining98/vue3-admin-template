@@ -3,7 +3,9 @@
     <Category :scene="scene" />
     <el-card>
       <div v-show="scene == 0">
-        <el-button type="primary" size="default" icon="Plus" :disabled="!c3Id" @click="addAttr">添加属性</el-button>
+        <el-button v-has="`btn.Attr.add`" type="primary" size="default" icon="Plus" :disabled="!c3Id" @click="addAttr">
+          添加属性
+        </el-button>
         <el-table :data="dataAttr" border style="margin: 10px 0">
           <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
           <el-table-column label="属性名称" prop="attrName" width="150"></el-table-column>
@@ -16,10 +18,10 @@
           </el-table-column>
           <el-table-column label="操作" prop="" width="150">
             <template #="{ row, $index }">
-              <el-button type="warning" size="small" icon="Edit" @click="updateAttr(row)"></el-button>
+              <el-button v-has="`btn.Attr.update`" type="warning" size="small" icon="Edit" @click="updateAttr(row)"></el-button>
               <el-popconfirm :title="`你确定删除${row.attrName}?`" width="200px" @confirm="deleteAttr(row.id)">
                 <template #reference>
-                  <el-button type="danger" size="small" icon="Delete"></el-button>
+                  <el-button v-has="`btn.Attr.remove`" type="danger" size="small" icon="Delete"></el-button>
                 </template>
               </el-popconfirm>
             </template>

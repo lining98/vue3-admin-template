@@ -6,15 +6,29 @@
     <el-table-column label="操作">
       <!-- row:即为已有的菜单对象|按钮的对象的数据 -->
       <template #="{ row, $index }">
-        <el-button type="primary" @click="addPermisstion(row)" size="small" :disabled="row.level == 4 ? true : false">
+        <el-button
+          v-has="`btn.Permission.add`"
+          type="primary"
+          @click="addPermisstion(row)"
+          size="small"
+          :disabled="row.level == 4 ? true : false"
+        >
           {{ row.level == 3 ? '添加功能' : '添加菜单' }}
         </el-button>
-        <el-button type="primary" @click="updatePermisstion(row)" size="small" :disabled="row.level == 1 ? true : false">
+        <el-button
+          v-has="`btn.Permission.update`"
+          type="primary"
+          @click="updatePermisstion(row)"
+          size="small"
+          :disabled="row.level == 1 ? true : false"
+        >
           编辑
         </el-button>
         <el-popconfirm :title="`你确定要删除${row.name}?`" width="260px" @confirm="removeMenu(row.id)">
           <template #reference>
-            <el-button type="primary" size="small" :disabled="row.level == 1 ? true : false">删除</el-button>
+            <el-button v-has="`btn.Permission.remove`" type="primary" size="small" :disabled="row.level == 1 ? true : false">
+              删除
+            </el-button>
           </template>
         </el-popconfirm>
       </template>

@@ -14,16 +14,17 @@
       <el-table-column fixed="right" label="操作" width="280">
         <template #="{ row, $index }">
           <el-button
+            v-has="`btn.Sku.updown`"
             :type="row.isSale == 1 ? 'primary' : 'success'"
             size="small"
             :icon="row.isSale == 1 ? 'Bottom' : 'Top'"
             @click="updateSale(row)"
           />
-          <el-button type="warning" size="small" icon="Edit" @click="updateSku" />
-          <el-button type="info" size="small" icon="InfoFilled" @click="findSku(row)" />
+          <el-button v-has="`btn.Sku.update`" type="warning" size="small" icon="Edit" @click="updateSku" />
+          <el-button v-has="`btn.Sku.detail`" type="info" size="small" icon="InfoFilled" @click="findSku(row)" />
           <el-popconfirm :title="`你确定删除${row.skuName}吗?`" width="200px" @confirm="deleteSku(row)">
             <template #reference>
-              <el-button type="danger" size="small" icon="Delete" title="删除SKU" @click=""></el-button>
+              <el-button v-has="`btn.Sku.remove`" type="danger" size="small" icon="Delete" title="删除SKU" @click=""></el-button>
             </template>
           </el-popconfirm>
         </template>
